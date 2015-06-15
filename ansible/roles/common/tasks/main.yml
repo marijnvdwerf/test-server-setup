@@ -1,2 +1,6 @@
 ---
+
+- name: Update all packages to the latest version
+  apt: update_cache=yes
+
 - include: ntp.yml
