@@ -15,3 +15,16 @@
 - name: Add php.ini for Apache
   template: src=php.ini.j2 dest=/etc/php5/apache2/php.ini owner=root group=root mode=644
   notify: restart apache
+
+- name: Install Xdebug
+  when: dev
+  apt: name=php5-xdebug state=present
+  notify: restart apache
+
+- name: Enable Xdebug
+  when: dev
+  ini_file: dest=/etc/php5/apache2/php.ini section=xdebug option="{{ item.key }}" value="{{ item.value }}"
+  with_dict:
+    xdebug.remote_enable: on
+    xdebug.remote_connect_back: on
+  notify: restart apache
