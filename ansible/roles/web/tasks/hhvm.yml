@@ -18,5 +18,6 @@
   file: path=/etc/apache2/mods-enabled/hhvm_proxy_fcgi.conf state=absent
   notify: restart apache
 
-- name: start hhvm
-  service: name=hhvm state=started enabled=true
+- name: Add php.ini for HHVM
+  template: src=php.ini.j2 dest=/etc/hhvm/php.ini owner=root group=root mode=644
+  notify: restart hhvm

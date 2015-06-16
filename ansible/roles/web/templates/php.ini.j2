@@ -1,0 +1,51 @@
+[PHP]
+
+date.timezone = Europe/Amsterdam
+date.default_latitude = 51.916667
+date.default_longitude = 4.5
+
+{% if dev %}
+error_reporting = E_ALL
+display_errors = On
+display_startup_errors = On
+track_errors = On
+{% else %}
+error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT
+display_errors = Off
+display_startup_errors = Off
+track_errors = Off
+{% endif %}
+
+output_buffering = 4096
+max_input_time = 60
+log_errors = On
+variables_order = "GPCS"
+request_order = "GP"
+register_argc_argv = Off
+enable_dl = Off
+
+post_max_size = 80M
+upload_max_filesize = 50M
+
+[CLI Server]
+cli_server.color = On
+
+[mail function]
+mail.add_x_header = On
+
+[Session]
+session.gc_divisor = 1000
+url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
+
+{% if hhvm %}
+; php options
+session.save_handler = files
+session.save_path = /var/lib/hhvm/sessions
+session.gc_maxlifetime = 1440
+
+; hhvm specific
+hhvm.log.level = Warning
+hhvm.log.always_log_unhandled_exceptions = true
+hhvm.log.runtime_error_reporting_level = 8191
+hhvm.mysql.typed_results = false
+{% endif %}
