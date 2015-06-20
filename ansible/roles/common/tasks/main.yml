@@ -3,4 +3,17 @@
 - name: Update all packages to the latest version
   apt: update_cache=yes
 
+- name: Install common packages
+  apt: name="{{ item }}" state=present force=yes
+  with_items:
+    - git
+
+- name: ensure github.com is a known host
+  lineinfile:
+    dest: /etc/ssh/ssh_known_hosts
+    create: yes
+    state: present
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}" # The command is executed locally to prevent an MITM attack. See http://hakunin.com/six-ansible-practices#path-to-success-1
+    regexp: "^github\\.com"
+
 - include: ntp.yml
