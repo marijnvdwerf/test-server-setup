@@ -1,0 +1,15 @@
+---
+- name: Groep voor deployment aanmaken
+  group: name=deploy state=present
+
+- name: Deploy en Beheerder toevoegen
+  user: name={{ item.name }} state=present group=deploy comment="{{ item.comment }}"
+  with_items:
+    - { name: 'deploy', comment: 'Gebruikt om app te deployen' }
+    - { name: 'beheerder', comment: 'Wheel user' }
+
+- name: GitHub public keys gebruiken voor inloggen
+  authorized_key: user=deploy key="https://github.com/{{ item }}.keys"
+  with_items:
+    - rmens
+    - marijnvdwerf
