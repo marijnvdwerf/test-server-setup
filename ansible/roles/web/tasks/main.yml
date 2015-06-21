@@ -15,13 +15,9 @@
   apache2_module: state=present name=rewrite
   notify: restart apache
 
+- name: Ensure root folder exists
+  file: path={{path}} state=directory
+
 - name: Enable server
   template: src=virtualhost.conf dest=/etc/apache2/sites-enabled/00-hamster.nl.conf owner=root group=root mode=644
   notify: restart apache
-
-
-- stat: path="{ path }/current/web"
-  register: stat_webroot
-
-- git: repo=https://github.com/marijnvdwerf/test-server-app.git dest="{ path }/current/web" update=no
-  when: stat_webroot.stat.exists == false
