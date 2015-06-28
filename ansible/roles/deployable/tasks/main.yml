@@ -8,6 +8,9 @@
     - { name: 'deploy', comment: 'Gebruikt om app te deployen' }
     - { name: 'beheerder', comment: 'Wheel user' }
 
+- name: Let deploy own project root
+  file: path={{path}} state=directory group=deploy
+
 - name: GitHub public keys gebruiken voor inloggen
   authorized_key: user=deploy key="https://github.com/{{ item }}.keys"
   with_items:
