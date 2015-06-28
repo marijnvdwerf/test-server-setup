@@ -16,7 +16,7 @@
 - name: install bower
   npm: name=bower global=yes
   
-- name: install bower
+- name: install grunt
   npm: name=grunt-cli global=yes
 
 - name: rename composer.phar to composer
