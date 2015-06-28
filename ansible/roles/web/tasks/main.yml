@@ -9,6 +9,15 @@
   
 - name: Install Apache 2.4
   apt: name=apache2 state=present force=yes
+  
+- name: install composer
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin creates=/usr/local/bin/composer
+
+- name: rename composer.phar to composer
+  shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer
+
+- name: make composer executable
+  file: path=/usr/local/bin/composer mode=a+x state=file
 
 - name: Disable default server
   file: path=/etc/apache2/sites-enabled/000-default.conf state=absent
