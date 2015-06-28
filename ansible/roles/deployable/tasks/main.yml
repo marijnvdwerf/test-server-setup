@@ -3,7 +3,7 @@
   group: name=deploy state=present
 
 - name: Deploy en Beheerder toevoegen
-  user: name={{ item.name }} state=present group=deploy comment="{{ item.comment }}"
+  user: name={{ item.name }} shell=/bin/bash state=present group=deploy comment="{{ item.comment }}"
   with_items:
     - { name: 'deploy', comment: 'Gebruikt om app te deployen' }
     - { name: 'beheerder', comment: 'Wheel user' }
