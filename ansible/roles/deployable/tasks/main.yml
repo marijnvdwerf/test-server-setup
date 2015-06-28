@@ -16,3 +16,11 @@
   with_items:
     - rmens
     - marijnvdwerf
+
+- name: Generate deploy key
+  command: ssh-keygen -q  -t rsa -b 4096 -N ''  -f '/home/deploy/.ssh/id_rsa' creates=/home/deploy/.ssh/id_rsa
+
+- shell: cat /home/deploy/.ssh/id_rsa.pub
+  register: id_rsa_pub
+
+- debug: msg="add the following key to https://github.com/omt/one-more-thing/settings/keys {{ id_rsa_pub.stdout }}"
