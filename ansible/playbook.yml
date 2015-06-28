@@ -1,7 +1,10 @@
 ---
 - hosts: all
+  vars_files:
+    - ../private/ansible/vars.yml
   sudo: yes
   roles:
     - common
     - web
     - deployable
+    - trackable

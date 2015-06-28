@@ -1,0 +1,19 @@
+---
+
+- name: Configure the New Relic apt repository.
+  apt_repository: repo="deb http://apt.newrelic.com/debian/ newrelic non-free" state=present
+
+- name: Trust the New Relic GPG key.
+  apt_key: url=https://download.newrelic.com/548C16BF.gpg state=present
+
+- name: Update the local package list.
+  apt: update_cache=yes
+
+- name: Install the Server Monitor package
+  apt: name=newrelic-sysmond state=present force=yes
+
+- name: Add license key to config file
+  shell: nrsysmond-config --set license_key="{{ newrelic_license_key }}"
+
+- name: Ensure New Relic Sysmond is started and enabled
+  service: name=newrelic-sysmond state=started enabled=yes
