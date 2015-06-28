@@ -10,6 +10,8 @@
 
 - include: php5.yml
   when: not hhvm
+  
+- include: deploytools.yml
 
 - name: Enable mod_rewrite
   apache2_module: state=present name=rewrite
