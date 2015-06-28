@@ -12,6 +12,9 @@
   
 - name: install bundler
   gem: name=bundler state=latest user_install=no
+  
+- name: install bower
+  npm: name=bower global=yes
 
 - name: rename composer.phar to composer
   shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer
