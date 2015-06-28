@@ -2,7 +2,8 @@
 - hosts: all
   vars_files:
     - ../private/ansible/vars.yml
-  sudo: yes
+  sudo: no
+  user: root
   roles:
     - common
     - web
