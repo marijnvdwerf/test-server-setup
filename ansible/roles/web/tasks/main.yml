@@ -18,7 +18,7 @@
   notify: restart apache
 
 - name: Ensure root folder exists
-  file: path={{path}} state=directory mode="u=rwx,g=rs,o=rx"
+  file: path={{path}} state=directory mode="u=rwx,g=rws,o=rx"
 
 - name: Enable server
   template: src=virtualhost.conf dest=/etc/apache2/sites-enabled/00-hamster.nl.conf owner=root group=root mode=644
