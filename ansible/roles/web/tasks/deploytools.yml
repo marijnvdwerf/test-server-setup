@@ -9,12 +9,18 @@
   
 - name: Install ruby
   apt: name=ruby state=present force=yes
+
+- name: Install ruby headers
+  apt: name=ruby-dev state=present force=yes
   
 - name: install composer
   shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin creates=/usr/local/bin/composer
   
 - name: install bundler
   gem: name=bundler state=latest user_install=no
+
+- name: install Compass
+  gem: name=compass state=latest user_install=no
   
 - name: install bower
   npm: name=bower global=yes
