@@ -28,3 +28,22 @@
     xdebug.remote_enable: on
     xdebug.remote_connect_back: on
   notify: restart apache
+
+- name: Install NewRelic PHP deamon
+  when: trackable
+  apt: name=newrelic-php5 state=present force=yes
+
+- command: newrelic-install install
+  when: trackable
+  environment:
+    NR_INSTALL_KEY: "{{ newrelic_license_key }}"
+    NR_INSTALL_SILENT: yes
+
+- name: Set NewRelic app name
+  when: trackable
+  lineinfile: dest=/etc/php5/apache2/conf.d/newrelic.ini regexp="newrelic.appname = " line='newrelic.appname = "{{ newrelic_app_name }}"' backup=yes
+  notify: restart apache
+
+- name: Disable New Relic on CLI # TODO: Should this actually be disabled?
+  when: trackable
+  lineinfile: dest=/etc/php5/cli/conf.d/newrelic.ini regexp="newrelic.enabled = " line='newrelic.enabled = false' backup=yes

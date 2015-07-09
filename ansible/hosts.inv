@@ -1,1 +1,9 @@
-188.166.105.104
+[web]
+188.166.126.218
+
+[database]
+188.166.126.112
+
+[production:children]
+web
+database

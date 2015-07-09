@@ -18,15 +18,3 @@
 - name: Ensure New Relic Sysmond is started and enabled
   service: name=newrelic-sysmond state=started enabled=yes
 
-- apt: name=newrelic-php5 state=present force=yes
-
-- command: newrelic-install install
-  environment:
-    NR_INSTALL_KEY: "{{ newrelic_license_key }}"
-    NR_INSTALL_SILENT: yes
-
-- lineinfile: dest=/etc/php5/apache2/conf.d/newrelic.ini regexp="newrelic.appname = " line='newrelic.appname = "{{ newrelic_app_name }}"' backup=yes
-  notify: restart apache
-
-- name: Disable New Relic on CLI
-  lineinfile: dest=/etc/php5/cli/conf.d/newrelic.ini regexp="newrelic.enabled = " line='newrelic.enabled = false' backup=yes
