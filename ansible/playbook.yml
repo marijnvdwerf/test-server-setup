@@ -6,7 +6,6 @@
   user: root
   roles:
     - common
-    - trackable
 
 - hosts: web
   sudo: no
@@ -15,6 +14,5 @@
     - ../private/ansible/vars.yml
   roles:
     - common
-    - trackable
     - web
     - deployable
