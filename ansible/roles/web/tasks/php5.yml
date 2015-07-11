@@ -5,7 +5,8 @@
     - php5
     - php5-curl
     - php5-gd
-
+    - php5-redis
+    
 - name: Add php.ini for CLI
   template: src=php.ini.j2 dest=/etc/php5/cli/php.ini owner=root group=root mode=644
 
