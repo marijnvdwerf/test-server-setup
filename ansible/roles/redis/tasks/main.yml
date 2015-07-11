@@ -2,3 +2,19 @@
   apt: name="{{ item }}" state=present force=yes
   with_items:
     - redis-server
+    
+- name: bind redit to all
+ lineinfile:
+    dest: /etc/redis/redis.conf
+    create: yes
+    state: present
+    line: "bind 0.0.0.0"
+    regexp: "^bind "    
+    
+- name: set redis password
+ lineinfile:
+    dest: /etc/redis/redis.conf
+    create: yes
+    state: present
+    line: "requirepass h@mst3r"
+    regexp: "^# requirepass "
