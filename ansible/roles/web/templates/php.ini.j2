@@ -37,8 +37,7 @@ mail.add_x_header = On
 session.gc_divisor = 1000
 url_rewriter.tags = "a=href,area=href,frame=src,input=src,form=fakeentry"
 session.save_handler = redis
-session.save_path = "tcp://{% for host in groups['redis'] %}{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}{% endfor %}:6379?auth=h@mst3r"
-
+session.save_path = "{% for host in groups['redis'] %}tcp://{{ hostvars[host]['ansible_eth0']['ipv4']['address'] }}:6379?auth=h@mst3r {% endfor %}"
 
 {% if hhvm %}
 ; php options
