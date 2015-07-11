@@ -4,7 +4,7 @@
     - redis-server
     
 - name: bind redit to all
- lineinfile:
+  lineinfile:
     dest: /etc/redis/redis.conf
     create: yes
     state: present
@@ -12,9 +12,12 @@
     regexp: "^bind "    
     
 - name: set redis password
- lineinfile:
+  lineinfile:
     dest: /etc/redis/redis.conf
     create: yes
     state: present
     line: "requirepass h@mst3r"
     regexp: "^# requirepass "
+    
+- name: restart redis
+  service: name=redis-server state=restarted enabled=yes
