@@ -1,6 +1,9 @@
 - name: Install Apache 2.4
   apt: name=apache2 state=present force=yes
 
+- name: Install MySQL client
+  apt: name=mysql-client state=present force=yes
+
 - name: Disable default server
   file: path=/etc/apache2/sites-enabled/000-default.conf state=absent
   notify: restart apache
