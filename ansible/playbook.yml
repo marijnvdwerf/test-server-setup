@@ -23,3 +23,11 @@
     - ../private/ansible/vars.yml
   roles:
     - redis
+
+- hosts: database
+  sudo: no
+  user: root
+  vars_files:
+    - ../private/ansible/vars.yml
+  roles:
+    - database

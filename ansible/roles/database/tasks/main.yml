@@ -1,0 +1,3 @@
+---
+- name: Install MySQL Server
+  apt: name=mysql-server state=present force=yes
