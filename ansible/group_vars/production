@@ -1,2 +1,3 @@
 ---
 trackable: yes
+redis_password: "h@mst3r"

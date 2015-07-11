@@ -16,7 +16,7 @@
     dest: /etc/redis/redis.conf
     create: yes
     state: present
-    line: "requirepass h@mst3r"
+    line: "requirepass {{ redis_password }}"
     regexp: "^# requirepass "
     
 - name: restart redis
