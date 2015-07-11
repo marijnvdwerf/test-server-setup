@@ -7,3 +7,7 @@
 [production:children]
 web
 database
+redis
+
+[redis]
+188.166.121.96

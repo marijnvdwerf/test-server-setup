@@ -1,0 +1,4 @@
+- name: Install redis
+  apt: name="{{ item }}" state=present force=yes
+  with_items:
+    - redis-server

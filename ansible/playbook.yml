@@ -13,6 +13,13 @@
   vars_files:
     - ../private/ansible/vars.yml
   roles:
-    - common
     - web
     - deployable
+
+- hosts: redis
+  sudo: no
+  user: root
+  vars_files:
+    - ../private/ansible/vars.yml
+  roles:
+    - redis
