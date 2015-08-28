@@ -1,3 +1,5 @@
+# This project was merged into a private repo
+
 ## Dependencies
 You can either install by hand, or by using Homebrew. What you'll need:
 
